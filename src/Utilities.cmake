@@ -7,7 +7,7 @@ function(
   # find the prefix
   string(FIND "${input}" "${prefix}" prefix_index)
   if("${prefix_index}" STREQUAL "-1")
-    log_error"Could not find ${prefix} in ${input}")
+    log_error("Could not find ${prefix} in ${input}")
   endif()
   # find the start index
   string(LENGTH "${prefix}" prefix_length)

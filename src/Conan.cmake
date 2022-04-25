@@ -1,7 +1,7 @@
 macro(run_conan)
   # Download automatically, you can also just copy the conan.cmake file
   if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
-    message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
+    log_info("Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
     file(
       DOWNLOAD "https://raw.githubusercontent.com/conan-io/cmake-conan/0.17.0/conan.cmake"
       "${CMAKE_BINARY_DIR}/conan.cmake"
@@ -25,15 +25,15 @@ macro(run_conan)
 
   # For multi configuration generators, like VS and XCode
   if(NOT CMAKE_CONFIGURATION_TYPES)
-    message(STATUS "Single configuration build!")
+    log_info("Single configuration build!")
     set(LIST_OF_BUILD_TYPES ${CMAKE_BUILD_TYPE})
   else()
-    message(STATUS "Multi-configuration build: '${CMAKE_CONFIGURATION_TYPES}'!")
+    log_info("Multi-configuration build: '${CMAKE_CONFIGURATION_TYPES}'!")
     set(LIST_OF_BUILD_TYPES ${CMAKE_CONFIGURATION_TYPES})
   endif()
 
   foreach(TYPE ${LIST_OF_BUILD_TYPES})
-    message(STATUS "Running Conan for build type '${TYPE}'")
+    log_info("Running Conan for build type '${TYPE}'")
 
     # Detects current build settings to pass into conan
     conan_cmake_autodetect(settings BUILD_TYPE ${TYPE})

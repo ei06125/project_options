@@ -82,7 +82,7 @@ function(
   endif()
 
   if(WARNINGS_AS_ERRORS)
-    message(TRACE "Warnings are treated as errors")
+    log_trace("Warnings are treated as errors")
     list(APPEND CLANG_WARNINGS -Werror)
     list(APPEND GCC_WARNINGS -Werror)
     list(APPEND MSVC_WARNINGS /WX)
@@ -95,7 +95,7 @@ function(
   elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     set(PROJECT_WARNINGS_CXX ${GCC_WARNINGS})
   else()
-    message(AUTHOR_WARNING "No compiler warnings set for CXX compiler: '${CMAKE_CXX_COMPILER_ID}'")
+    log_warn("No compiler warnings set for CXX compiler: '${CMAKE_CXX_COMPILER_ID}'")
     # TODO support Intel compiler
   endif()
 

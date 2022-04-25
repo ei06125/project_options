@@ -8,11 +8,11 @@ function(assure_out_of_source_builds)
 
   # disallow in-source builds
   if("${srcdir}" STREQUAL "${bindir}")
-    message("######################################################")
-    message("Warning: in-source builds are disabled")
-    message("Please create a separate build directory and run cmake from there")
-    message("######################################################")
-    message(FATAL_ERROR "Quitting configuration")
+    log_warn("######################################################")
+    log_warn("Warning: in-source builds are disabled")
+    log_warn("Please create a separate build directory and run cmake from there")
+    log_warn("######################################################")
+    log_fatal("Quitting configuration")
   endif()
 endfunction()
 

@@ -4,6 +4,8 @@ set(ProjectOptions_SRC_DIR
     ${CMAKE_CURRENT_LIST_DIR}
     CACHE FILEPATH "")
 
+include("${ProjectOptions_SRC_DIR}/Logger.cmake")
+
 include("${ProjectOptions_SRC_DIR}/PreventInSourceBuilds.cmake")
 
 include("${ProjectOptions_SRC_DIR}/Vcpkg.cmake")

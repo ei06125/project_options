@@ -1,6 +1,6 @@
 # Set a default build type if none was specified
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-  message(STATUS "Setting build type to 'RelWithDebInfo' as none was specified.")
+  log_info("Setting build type to 'RelWithDebInfo' as none was specified.")
   set(CMAKE_BUILD_TYPE
       RelWithDebInfo
       CACHE STRING "Choose the type of build." FORCE)
@@ -36,7 +36,7 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC" AND MSVC_VERSION GREATER 1900)
   add_compile_options(/diagnostics:column)
 else()
-  message(STATUS "No colored compiler diagnostic set for '${CMAKE_CXX_COMPILER_ID}' compiler.")
+  log_info("No colored compiler diagnostic set for '${CMAKE_CXX_COMPILER_ID}' compiler.")
 endif()
 
 # if the default CMAKE_CXX_STANDARD is not set detect the latest CXX standard supported by the compiler and use it
@@ -53,8 +53,7 @@ if(NOT "${CMAKE_CXX_STANDARD}")
   else()
     set(CXX_LATEST_STANDARD 11)
   endif()
-  message(
-    STATUS
+  log_info(
       "The default CMAKE_CXX_STANDARD used by external targets and tools is not set yet. Using the latest supported C++ standard that is ${CXX_LATEST_STANDARD}"
   )
   set(CMAKE_CXX_STANDARD ${CXX_LATEST_STANDARD})

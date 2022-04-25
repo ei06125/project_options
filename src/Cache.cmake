@@ -12,15 +12,14 @@ function(enable_cache)
     CACHE_OPTION_INDEX)
 
   if(${CACHE_OPTION_INDEX} EQUAL -1)
-    message(
-      STATUS
+    log_info(
         "Using custom compiler cache system: '${CACHE_OPTION}', explicitly supported entries are ${CACHE_OPTION_VALUES}"
     )
   endif()
 
   find_program(CACHE_BINARY NAMES ${CACHE_OPTION_VALUES})
   if(CACHE_BINARY)
-    message(STATUS "${CACHE_BINARY} found and enabled")
+    log_info("${CACHE_BINARY} found and enabled")
     set(CMAKE_CXX_COMPILER_LAUNCHER
         ${CACHE_BINARY}
         CACHE FILEPATH "CXX compiler cache used")
@@ -28,6 +27,6 @@ function(enable_cache)
         ${CACHE_BINARY}
         CACHE FILEPATH "C compiler cache used")
   else()
-    message(WARNING "${CACHE_OPTION} is enabled but was not found. Not using it")
+    log_warn("${CACHE_OPTION} is enabled but was not found. Not using it")
   endif()
 endfunction()

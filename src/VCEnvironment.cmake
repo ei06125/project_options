@@ -19,7 +19,7 @@ macro(detect_architecture)
       set(VCVARSALL_ARCH ${CMAKE_HOST_SYSTEM_PROCESSOR})
     else()
       set(VCVARSALL_ARCH x64)
-      message(STATUS "Unkown architecture CMAKE_SYSTEM_PROCESSOR: ${CMAKE_SYSTEM_PROCESSOR_LOWER} - using x64")
+      log_info("Unkown architecture CMAKE_SYSTEM_PROCESSOR: ${CMAKE_SYSTEM_PROCESSOR_LOWER} - using x64")
     endif()
   endif()
 endmacro()
@@ -46,7 +46,7 @@ function(run_vcvarsall)
       detect_architecture()
 
       # run vcvarsall and print the environment variables
-      message(STATUS "Running `${VCVARSALL_FILE} ${VCVARSALL_ARCH}` to set up the MSVC environment")
+      log_info("Running `${VCVARSALL_FILE} ${VCVARSALL_ARCH}` to set up the MSVC environment")
       execute_process(
         COMMAND
           "cmd" "/c" ${VCVARSALL_FILE} ${VCVARSALL_ARCH} #
@@ -62,8 +62,7 @@ function(run_vcvarsall)
       set_env_from_string("${VCVARSALL_ENV}")
 
     else()
-      message(
-        WARNING
+      log_warn(
           "Could not find `vcvarsall.bat` for automatic MSVC environment preparation. Please manually open the MSVC command prompt and rebuild the project.
       ")
     endif()

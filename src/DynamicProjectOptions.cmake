@@ -96,8 +96,7 @@ foreach(option ${options})
 
   if(DEFINED ${option_name}_DEFAULT)
     if(DEFINED ${option_name}_DEVELOPER_DEFAULT OR DEFINED ${option_name}_USER_DEFAULT)
-      message(
-        SEND_ERROR
+      log_error(
           "You have separately defined user/developer defaults and general defaults for ${option_name}. Please either provide a general default OR separate developer/user overrides"
       )
     endif()

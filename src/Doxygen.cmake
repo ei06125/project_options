@@ -44,7 +44,7 @@ function(enable_doxygen DOXYGEN_THEME)
   find_package(Doxygen REQUIRED OPTIONAL_COMPONENTS dot)
 
   # add doxygen-docs target
-  message(STATUS "Adding `doxygen-docs` target that builds the documentation.")
+  log_info("Adding `doxygen-docs` target that builds the documentation.")
   doxygen_add_docs(doxygen-docs ALL ${PROJECT_SOURCE_DIR}
                    COMMENT "Generating documentation - entry file: ${CMAKE_CURRENT_BINARY_DIR}/html/index.html")
 endfunction()

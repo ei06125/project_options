@@ -13,8 +13,7 @@ macro(configure_linker project_name)
     USER_LINKER_OPTION_INDEX)
 
   if(${USER_LINKER_OPTION_INDEX} EQUAL -1)
-    message(
-      STATUS
+    log_info(
         "Using custom linker: '${USER_LINKER_OPTION}', explicitly supported entries are ${USER_LINKER_OPTION_VALUES}")
   endif()
 
